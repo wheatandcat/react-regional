@@ -1,0 +1,7 @@
+src/
+examples/
+doc/
+.prettierrc
+.cache
+.tsconfig.json
+.prettierrc

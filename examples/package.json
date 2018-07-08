@@ -1,0 +1,34 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "BABEL_ENV=development NODE_ENV=development webpack-dev-server --mode development",
+    "build": "BABEL_ENV=production NODE_ENV=production webpack --mode production",
+    "serve": "cd build && serve -l 1234"
+  },
+  "author": "wheatandcat",
+  "license": "MIT",
+  "dependencies": {
+    "@reach/router": "^1.1.1",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "styled-components": "^3.3.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-react-app": "^3.1.2",
+    "css-loader": "^1.0.0",
+    "prettier": "^1.13.7",
+    "style-loader": "^0.21.0",
+    "ts-loader": "^4.4.2",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  }
+}
