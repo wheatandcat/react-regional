@@ -11,9 +11,13 @@
   "author": "wheatandcat",
   "license": "MIT",
   "dependencies": {
+    "@material-ui/core": "^1.3.1",
+    "@material-ui/icons": "^1.1.0",
     "@reach/router": "^1.1.1",
+    "classnames": "^2.2.6",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "styled-components": "^3.3.3"

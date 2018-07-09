@@ -3,8 +3,8 @@ import { Query, gql } from "../../../../../dist/index";
 import Page from "./Page";
 
 var query = gql`
-  {
-    users {
+  query User($id: ID) {
+    user(where: { id: $id }) {
       id
       name
     }
@@ -19,13 +19,13 @@ export default class Connected extends Component {
 
   render() {
     return (
-      <Query query={query}>
+      <Query query={query} variables={{ id: this.props.userId }}>
         {result => {
           if (result.loading) {
             return null;
           }
 
-          return <Page {...this.props} users={result.data.users} />;
+          return <Page {...this.props} user={result.data.user} />;
         }}
       </Query>
     );
