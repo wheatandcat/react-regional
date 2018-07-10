@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Consumer } from "./containers/Provider";
 import { Gql } from "./gql";
 
 interface State {
@@ -11,6 +12,7 @@ interface Props {
   children: (data: any) => React.ReactNode;
   query: Gql;
   variables: any;
+  fetchData: (gql: Gql, variables: any) => Promise<any>;
 }
 
 class Query extends React.Component<Props, State> {
@@ -43,18 +45,10 @@ class Query extends React.Component<Props, State> {
     let response;
 
     try {
-      response = await fetch("http://localhost:4466/", {
-        mode: "cors",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          query: this.props.query.query,
-          variables: this.props.variables
-        })
-      });
+      response = await this.props.fetchData(
+        this.props.query,
+        this.props.variables
+      );
     } catch (error) {
       return this.setState({ loading: false, error: error });
     }
@@ -82,4 +76,8 @@ class Query extends React.Component<Props, State> {
   }
 }
 
-export default Query;
+export default (props: any) => (
+  <Consumer>
+    {({ fetchData }) => <Query {...props} fetchData={fetchData} />}
+  </Consumer>
+);

@@ -6,7 +6,8 @@
         "module": "commonjs",
         "lib": [
             "es2015",
-            "dom"
+            "dom",
+            "esnext.asynciterable"
         ],
         "target": "es5",
         "moduleResolution": "node",

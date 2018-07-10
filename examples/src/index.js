@@ -11,6 +11,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "@reach/router";
+import { RegionalProvider } from "../../dist/index";
 import Router from "./Router";
 
 const drawerWidth = 240;
@@ -47,36 +48,38 @@ function ClippedDrawer(props) {
   const { classes } = props;
 
   return (
-    <div className={classes.root}>
-      <AppBar position="absolute" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="title" color="inherit" noWrap>
-            example
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
-        <div className={classes.toolbar} />
-        <List component="nav">
-          <Link to="/users">
-            <ListItem button>
-              <ListItemText primary="Users" />
-            </ListItem>
-          </Link>
-          <Divider />
-          <Link to="/users/new">
-            <ListItem button>
-              <ListItemText primary="Create User" />
-            </ListItem>
-          </Link>
-          <Divider />
-        </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Router />
-      </main>
-    </div>
+    <RegionalProvider uri="http://localhost:4466/">
+      <div className={classes.root}>
+        <AppBar position="absolute" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="title" color="inherit" noWrap>
+              example
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
+          <div className={classes.toolbar} />
+          <List component="nav">
+            <Link to="/users">
+              <ListItem button>
+                <ListItemText primary="Users" />
+              </ListItem>
+            </Link>
+            <Divider />
+            <Link to="/users/new">
+              <ListItem button>
+                <ListItemText primary="Create User" />
+              </ListItem>
+            </Link>
+            <Divider />
+          </List>
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Router />
+        </main>
+      </div>
+    </RegionalProvider>
   );
 }
 

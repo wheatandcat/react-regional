@@ -25,7 +25,9 @@
     "typescript": "^2.9.2"
   },
   "dependencies": {
+    "@types/graphql": "^0.13.3",
     "@types/react": "^16.4.6",
+    "graphql": "^0.13.2",
     "postinstall-build": "^5.0.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"
