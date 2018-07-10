@@ -1,5 +1,5 @@
 /node_modules
-dist/*
+dist
 !build/index.html
 !build/favicon.ico
 npm-debug.log*
