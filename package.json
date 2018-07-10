@@ -1,11 +1,8 @@
 {
-  "name": "regional",
+  "name": "react-regional",
   "version": "0.0.1",
-  "description": "",
+  "description": "graphql client for react",
   "main": "dist/index.js",
-  "directories": {
-    "example": "examples"
-  },
   "scripts": {
     "start": "tsc -w",
     "build": "tsc",
