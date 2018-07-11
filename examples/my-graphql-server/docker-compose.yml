@@ -25,5 +25,13 @@ services:
       MYSQL_ROOT_PASSWORD: prisma
     volumes:
       - mysql:/var/lib/mysql
+  webserver:
+    image: node
+    volumes:
+      - "./node:/node"
+    working_dir: /node
+    ports:
+      - "5000:5000"
+    command: [sh, -c, npm install && npm start]
 volumes:
   mysql:

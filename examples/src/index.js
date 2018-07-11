@@ -72,6 +72,12 @@ function ClippedDrawer(props) {
               </ListItem>
             </Link>
             <Divider />
+            <Link to="login">
+              <ListItem button>
+                <ListItemText primary="Login" />
+              </ListItem>
+            </Link>
+            <Divider />
           </List>
         </Drawer>
         <main className={classes.content}>
