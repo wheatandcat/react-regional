@@ -39,7 +39,7 @@ export default props => (
       <br />
       <br />
       <InputForm>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={props.onLogin}>
           LOGIN
         </Button>
       </InputForm>
