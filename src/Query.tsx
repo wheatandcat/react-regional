@@ -12,10 +12,15 @@ interface Props {
   children: (data: any) => React.ReactNode;
   query: Gql;
   variables: any;
-  fetchData: (gql: Gql, variables: any) => Promise<any>;
+  cache: boolean;
+  fetchData: (gql: Gql, variables: any, cache: boolean) => Promise<any>;
 }
 
 class Query extends React.Component<Props, State> {
+  static defaultProps = {
+    cache: false
+  };
+
   state = {
     loading: true,
     error: false,
@@ -36,7 +41,7 @@ class Query extends React.Component<Props, State> {
     }
   }
 
-  fetchData = async (): Promise<any> => {
+  fetchData = async () => {
     this.setState({
       loading: true,
       error: false
@@ -47,25 +52,27 @@ class Query extends React.Component<Props, State> {
     try {
       response = await this.props.fetchData(
         this.props.query,
-        this.props.variables
+        this.props.variables,
+        this.props.cache
       );
     } catch (error) {
-      return this.setState({ loading: false, error: error });
-    }
-
-    const responseData = await response.json();
-
-    if (responseData.errors) {
       return this.setState({
         loading: false,
-        error: responseData.errors[0]
+        error: error
+      });
+    }
+
+    if (response.errors) {
+      return this.setState({
+        loading: false,
+        error: response.errors[0]
       });
     }
 
     this.setState({
       loading: false,
       error: false,
-      data: responseData.data
+      data: response.data
     });
   };
 

@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "@reach/router";
 import { RegionalProvider } from "../../dist/index";
+import Provider from "./containers/Provider";
 import Router from "./Router";
 
 const drawerWidth = 240;
@@ -48,7 +49,7 @@ function ClippedDrawer(props) {
   const { classes } = props;
 
   return (
-    <RegionalProvider uri="http://localhost:4466/">
+    <Provider>
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
@@ -85,7 +86,7 @@ function ClippedDrawer(props) {
           <Router />
         </main>
       </div>
-    </RegionalProvider>
+    </Provider>
   );
 }
 

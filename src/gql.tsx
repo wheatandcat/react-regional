@@ -1,5 +1,6 @@
 export interface Gql {
   query: string;
+  key: string;
 }
 
 export default function(): Gql {
@@ -8,5 +9,8 @@ export default function(): Gql {
 
   var result = typeof literals === "string" ? literals : literals[0];
 
-  return { query: result };
+  return {
+    query: result,
+    key: JSON.stringify(result)
+  };
 }

@@ -12,7 +12,7 @@ interface Props {
   children: (data: any, onMutation: any) => React.ReactNode;
   query: Gql;
   variables: any;
-  fetchData: (gql: Gql, variables: any) => Promise<any>;
+  fetchData: (gql: Gql, variables: any, cache: boolean) => Promise<any>;
 }
 
 class Mutation extends React.Component<Props, State> {
@@ -37,25 +37,27 @@ class Mutation extends React.Component<Props, State> {
     try {
       response = await this.props.fetchData(
         this.props.query,
-        this.props.variables
+        this.props.variables,
+        false
       );
     } catch (error) {
-      return this.setState({ loading: false, error: error });
-    }
-
-    const responseData = await response.json();
-
-    if (responseData.errors) {
       return this.setState({
         loading: false,
-        error: responseData.errors[0]
+        error: error
+      });
+    }
+
+    if (response.errors) {
+      return this.setState({
+        loading: false,
+        error: response.errors[0]
       });
     }
 
     this.setState({
       loading: false,
       error: false,
-      data: responseData.data
+      data: response.data
     });
   };
 

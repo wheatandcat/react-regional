@@ -44,7 +44,7 @@ export default class Connected extends Component {
 
       const { token } = await response.json();
 
-      localStorage.setItem("token", token);
+      window.localStorage.setItem("id_token", token);
 
       this.setState({ login: true });
     } catch (error) {

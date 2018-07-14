@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Gql } from "../gql";
+import Cache from "../memoryCache";
+
+const cacheClass = new Cache();
 
 const Context = React.createContext({
-  fetchData: async (gql: Gql, variables: any) => {}
+  fetchData: async (gql: Gql, variables: any, cache: boolean) => {}
 });
 
 const { Provider } = Context;
@@ -16,7 +19,33 @@ interface Props {
 export default class Connected extends React.Component<Props, void> {
   static defaultprops = { headers: {} };
 
-  fetchData = async (gql: Gql, variables: any): Promise<any> => {
+  getCacheKey = (query: string, variables: any) => {
+    return `${query}||${JSON.stringify(variables)}`;
+  };
+
+  getCache = (key: string) => {
+    const value = cacheClass.getCache(key);
+    if (value) {
+      return value;
+    }
+
+    return null;
+  };
+
+  fetchData = async (
+    gql: Gql,
+    variables: any,
+    cache: boolean
+  ): Promise<any> => {
+    const key = this.getCacheKey(gql.key, variables);
+
+    if (cache) {
+      const cacheData = this.getCache(key);
+      if (cacheData) {
+        return cacheData;
+      }
+    }
+
     const response = await fetch(this.props.uri, {
       method: "POST",
       headers: {
@@ -30,7 +59,17 @@ export default class Connected extends React.Component<Props, void> {
       })
     });
 
-    return response;
+    if (!response.ok) {
+      return;
+    }
+
+    const responseData = await response.json();
+
+    if (cache) {
+      cacheClass.setCache(key, responseData);
+    }
+
+    return responseData;
   };
 
   render() {

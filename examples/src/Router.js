@@ -4,6 +4,7 @@ import User from "./components/pages/User/Connected";
 import Users from "./components/pages/Users/Connected";
 import CreateUser from "./components/pages/CreateUser/Connected";
 import Login from "./components/pages/Login/Connected";
+import Refresh from "./components/pages/Refresh/Connected";
 
 export default () => (
   <Router>
@@ -12,5 +13,6 @@ export default () => (
     <User path="users/:userId" />
     <CreateUser path="users/new" />
     <Login path="login" />
+    <Refresh path="refresh" />
   </Router>
 );
