@@ -8,18 +8,18 @@ sidebar_label: <Mutation />
 
 Mutation is a component for updating data from GraphQL server.
 
-### examples
+## Examples
 
 ```:js
 import React, { Component } from "react";
 import { Mutation, gql } from "../../../../../dist/index";
 
-var query = gql`
-  mutation CreateUser($name: String!) {
-    createUser(data: { name: $name }) {
-      id
+const query = gql`
+    mutation CreateUser($name: String!) {
+        createUser(data: { name: $name }) {
+            id
+        }
     }
-  }
 `;
 
 export default props => (
@@ -51,7 +51,7 @@ export default props => (
 ```
 
 
-### Props
+## Props
 
 | Name | Type | Default | Description |
 ----|----|----|---- 

@@ -1,10 +1,10 @@
 ---
-id: introduction
-title: introduction to React-Reginal
-sidebar_label: introduction to React-Reginal
+id: Introduction
+title: Introduction to react-reginal
+sidebar_label: Introduction to react-reginal
 ---
 
-## introduction
+## Introduction
 
-React-Reginal is simple GraphQL react client.
+react-reginal is simple GraphQL react client.
 This provides an environment that meke it easy to experience GraphQL 

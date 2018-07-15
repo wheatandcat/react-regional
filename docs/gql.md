@@ -9,7 +9,7 @@ gql is a function for declaring queries.
 The GraphQL sever access by query for this use.
 It is used to throw queries to the GraphQL server.
 
-## examples
+## Examples
 
 ```:js
 import { gql } from "react-regional";

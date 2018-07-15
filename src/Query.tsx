@@ -13,7 +13,12 @@ interface Props {
   query: Gql;
   variables: any;
   cache: boolean;
-  fetchData: (gql: Gql, variables: any, cache: boolean) => Promise<any>;
+  fetchData: (
+    gql: Gql,
+    variables: any,
+    getCache: boolean,
+    setCache: boolean
+  ) => Promise<any>;
 }
 
 class Query extends React.Component<Props, State> {
@@ -27,7 +32,7 @@ class Query extends React.Component<Props, State> {
   };
 
   componentDidMount() {
-    this.fetchData();
+    this.fetchData(this.props.cache, this.props.cache);
   }
 
   componentDidUpdate(prevProps: Props) {
@@ -36,11 +41,11 @@ class Query extends React.Component<Props, State> {
       JSON.stringify(this.props.variables) !==
         JSON.stringify(prevProps.variables)
     ) {
-      this.fetchData();
+      this.fetchData(this.props.cache, this.props.cache);
     }
   }
 
-  fetchData = async () => {
+  fetchData = async (getCache: boolean, setCache: boolean) => {
     this.setState({
       loading: true,
       error: undefined
@@ -52,7 +57,8 @@ class Query extends React.Component<Props, State> {
       response = await this.props.fetchData(
         this.props.query,
         this.props.variables,
-        this.props.cache
+        getCache,
+        setCache
       );
     } catch (error) {
       return this.setState({
@@ -78,7 +84,10 @@ class Query extends React.Component<Props, State> {
   render() {
     const { children } = this.props;
 
-    return children(this.state);
+    return children({
+      ...this.state,
+      onRefetch: () => this.fetchData(false, true)
+    });
   }
 }
 

@@ -9,6 +9,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "@reach/router";
 import Provider from "./containers/Provider";
@@ -52,9 +53,23 @@ function ClippedDrawer(props) {
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
-              example
+            <div />
+            <Typography
+              variant="title"
+              color="inherit"
+              noWrap
+              style={{ paddingRight: 50 }}
+            >
+              REACT-REGIONAL EXAMPLES
             </Typography>
+
+            <Button
+              variant="contained"
+              href="https://github.com/wheatandcat/react-regional"
+              style={{ marginLeft: "auto" }}
+            >
+              GitHub
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
@@ -75,6 +90,12 @@ function ClippedDrawer(props) {
             <Link to="login">
               <ListItem button>
                 <ListItemText primary="Login" />
+              </ListItem>
+            </Link>
+            <Divider />
+            <Link to="refresh">
+              <ListItem button>
+                <ListItemText primary="Cache refresh" />
               </ListItem>
             </Link>
             <Divider />

@@ -12,7 +12,12 @@ interface Props {
   children: (data: any, onMutation: any) => React.ReactNode;
   query: Gql;
   variables: any;
-  fetchData: (gql: Gql, variables: any, cache: boolean) => Promise<any>;
+  fetchData: (
+    gql: Gql,
+    variables: any,
+    getCache: boolean,
+    setCache: boolean
+  ) => Promise<any>;
 }
 
 class Mutation extends React.Component<Props, State> {
@@ -37,6 +42,7 @@ class Mutation extends React.Component<Props, State> {
       response = await this.props.fetchData(
         this.props.query,
         this.props.variables,
+        false,
         false
       );
     } catch (error) {

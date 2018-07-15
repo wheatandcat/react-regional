@@ -1,33 +1,49 @@
 import React, { Component } from "react";
-import { Query, gql } from "../../../../../dist/index";
+import { Mutation, gql } from "../../../../../dist/index";
+import Users from "./Users/Connected";
 import Page from "./Page";
 
 var query = gql`
-  {
-    users {
+  mutation CreateUser($name: String!) {
+    createUser(data: { name: $name }) {
       id
-      name
     }
   }
 `;
 
 export default class Connected extends Component {
   state = {
-    items: [],
-    categories: []
+    input: {
+      name: ""
+    },
+    create: false
+  };
+
+  onInput = event => {
+    this.setState({
+      input: {
+        ...this.state.input,
+        [event.target.name]: event.target.value
+      }
+    });
   };
 
   render() {
     return (
-      <Query query={query}>
-        {result => {
-          if (result.loading) {
-            return null;
-          }
-
-          return <Page {...this.props} users={result.data.users} />;
-        }}
-      </Query>
+      <div>
+        <Mutation query={query} variables={{ ...this.state.input }} cache>
+          {onMutation => {
+            return (
+              <Page
+                {...this.props}
+                onMutation={onMutation}
+                onInput={this.onInput}
+              />
+            );
+          }}
+        </Mutation>
+        <Users />
+      </div>
     );
   }
 }

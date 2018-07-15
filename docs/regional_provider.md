@@ -10,7 +10,7 @@ RegionalProvider is root component of react-regional compornents.
 This set fetch url host and headers.
 RegionalProvider provide GraphQL sever connectinon.
 
-## example
+## Example
 
 ```:js
 import React from "react";

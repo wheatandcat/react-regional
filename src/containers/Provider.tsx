@@ -5,7 +5,12 @@ import Cache from "../memoryCache";
 const cacheClass = new Cache();
 
 const Context = React.createContext({
-  fetchData: async (gql: Gql, variables: any, cache: boolean) => {}
+  fetchData: async (
+    gql: Gql,
+    variables: any,
+    getCache: boolean,
+    setCache: boolean
+  ) => {}
 });
 
 const { Provider } = Context;
@@ -35,11 +40,12 @@ export default class Connected extends React.Component<Props, void> {
   fetchData = async (
     gql: Gql,
     variables: any,
-    cache: boolean
+    getCache: boolean,
+    setCache: boolean
   ): Promise<any> => {
     const key = this.getCacheKey(gql.key, variables);
 
-    if (cache) {
+    if (getCache) {
       const cacheData = this.getCache(key);
       if (cacheData) {
         return cacheData;
@@ -65,7 +71,7 @@ export default class Connected extends React.Component<Props, void> {
 
     const responseData = await response.json();
 
-    if (cache) {
+    if (setCache) {
       cacheClass.setCache(key, responseData);
     }
 

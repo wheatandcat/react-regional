@@ -8,56 +8,56 @@ sidebar_label: <Query />
 
 Query is a component for getting data from GraphQL server.
 
-## examples
+## Examples
 
-### get list
+### Get list
 
 ```:js
 import React from "react";
 import { gql, Query } from "react-regional";
 
 const query = gql`
-  {
-    users {
-      id
-      name
+    {
+        users {
+            id
+            name
+        }
     }
-  }
 `;
 
 export default props => (
     <Query query={query}>
-            {result => {
-                if (result.loading) {
-                    return null;
-                }
+        {result => {
+            if (result.loading) {
+                return null;
+            }
 
-                return (
-                    <div>
-                        {result.data.users.map((user, index) => (
-                            <div key={index}>{user.name}</div>
-                        ))}
-                    </div>
-                )
-            }}
+            return (
+                <div>
+                    {result.data.users.map((user, index) => (
+                        <div key={index}>{user.name}</div>
+                    ))}
+                </div>
+            )
+        }}
     </Query>
 )
 ```
 
 
-### get single recode
+### Get single recode
 
 ```:js
 import React from "react";
 import { gql, Query } from "react-regional";
 
 const query = gql`
-  query User($id: ID) {
-    user(where: { id: $id }) {
-      id
-      name
+    query User($id: ID) {
+        user(where: { id: $id }) {
+            id
+            name
+        }
     }
-  }
 `;
 
 export default props => (
@@ -76,6 +76,29 @@ export default props => (
     </Query>
 )
 ```
+
+### Cache and Refetch
+
+```:js
+  render() {
+    return (
+        <Query query={query} cache>
+            {result => {
+                return (
+                    <div>
+                        <div>
+                            {result.data.user.name}
+                        </div>
+                        <div>
+                            <button onClick={result.onRefetch}>Refetch</button>
+                        </div>
+                    </div>
+                );
+            }}
+        </Query>
+```
+
+
 
 
 ## Props
@@ -100,4 +123,6 @@ The Query return results.
 ----|----|----|---- 
 | data | any | null | Return on GraphQL response data. |
 | loading | boolean | false | If true, The http response is fetching. |
-| error | any | undefined | Return on Request Error and GraphQL Error.  |
+| error | any | undefined | Return on request error and GraphQL error.  |
+| onRefetch | () => void | - | The refetch is a function to refetch the same request. |
+
