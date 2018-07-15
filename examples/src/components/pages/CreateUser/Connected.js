@@ -30,11 +30,7 @@ export default class Connected extends Component {
 
   render() {
     return (
-      <Mutation
-        MutationButton
-        query={query}
-        variables={{ ...this.state.input }}
-      >
+      <Mutation query={query} variables={{ ...this.state.input }}>
         {(onMutation, result) => {
           if (result.loading) {
             return null;

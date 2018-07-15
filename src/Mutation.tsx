@@ -4,7 +4,7 @@ import { Gql } from "./gql";
 
 interface State {
   loading: boolean;
-  error: any;
+  error?: any;
   data: any;
 }
 
@@ -18,7 +18,6 @@ interface Props {
 class Mutation extends React.Component<Props, State> {
   state = {
     loading: false,
-    error: false,
     data: {}
   };
 
@@ -29,7 +28,7 @@ class Mutation extends React.Component<Props, State> {
   fetchData = async (): Promise<any> => {
     this.setState({
       loading: true,
-      error: false
+      error: undefined
     });
 
     let response;
@@ -56,7 +55,7 @@ class Mutation extends React.Component<Props, State> {
 
     this.setState({
       loading: false,
-      error: false,
+      error: undefined,
       data: response.data
     });
   };

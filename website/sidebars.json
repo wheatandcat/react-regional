@@ -1,0 +1,6 @@
+{
+  "docs": {
+    "Introduction": ["introduction", "quick_start"],
+    "API Reference": ["regional_provider", "gql", "query", "mutation"]
+  }
+}

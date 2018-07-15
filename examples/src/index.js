@@ -11,7 +11,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import { Link } from "@reach/router";
-import { RegionalProvider } from "../../dist/index";
 import Provider from "./containers/Provider";
 import Router from "./Router";
 

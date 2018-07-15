@@ -1,7 +1,9 @@
 src/
 examples/
-doc/
+docs/
 .prettierrc
 .cache
 .tsconfig.json
 .prettierrc
+website/
+.gitignore-example-from-docusaurus/
