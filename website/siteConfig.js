@@ -23,8 +23,8 @@ const users = [
 const siteConfig = {
   title: "react-regional" /* title for your website */,
   tagline: "graphQL simple react client",
-  url: "https://your-docusaurus-test-site.com" /* your website url */,
-  baseUrl: "/" /* base url for your project */,
+  url: "https://wheatandcat.github.io" /* your website url */,
+  baseUrl: "/react-regional/" /* base url for your project */,
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
