@@ -4,7 +4,7 @@
 
 ## Intro
 
-react-regional is graphQL simple react client.
+react-regional is GraphQL simple react client.
 
 ## Installation
 
