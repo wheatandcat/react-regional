@@ -1,5 +1,5 @@
 ---
-id: Introduction
+id: introduction
 title: Introduction to react-reginal
 sidebar_label: Introduction to react-reginal
 ---

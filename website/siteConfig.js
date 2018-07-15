@@ -40,9 +40,7 @@ const siteConfig = {
   headerLinks: [
     { doc: "introduction", label: "Docs" },
     { href: "https://github.com/wheatandcat/react-regional", label: "GitHub" },
-    { blog: false },
-    { search: true },
-    { languages: false }
+    { search: true }
   ],
 
   // If you have users set above, you add it here:
